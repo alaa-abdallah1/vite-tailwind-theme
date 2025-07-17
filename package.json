@@ -1,0 +1,72 @@
+{
+  "name": "vite-tailwind-theme",
+  "version": "1.0.1",
+  "description": "A Vite plugin for generating Tailwind CSS themes",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alaa-abdallah1/vite-tailwind-theme.git"
+  },
+  "bugs": {
+    "url": "https://github.com/alaa-abdallah1/vite-tailwind-theme/issues"
+  },
+  "homepage": "https://github.com/alaa-abdallah1/vite-tailwind-theme#readme",
+  "type": "module",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "prepublishOnly": "yarn run build",
+    "release": "yarn run build && yarn publish"
+  },
+  "keywords": [
+    "vite",
+    "vite-plugin",
+    "css",
+    "tailwind",
+    "tailwindcss",
+    "theme",
+    "dark-theme",
+    "light-theme"
+  ],
+  "author": "Alaa Abdallah",
+  "license": "MIT",
+  "dependencies": {
+    "@payiano/ha-utils": "^0.4.0-beta.42"
+  },
+  "devDependencies": {
+    "@payiano/ha-types": "^0.4.0-beta.29",
+    "@types/estree": "^1.0.5",
+    "@types/json-schema": "^7.0.15",
+    "@types/node": "^22.15.20",
+    "lodash": "^4.17.21",
+    "tailwindcss": "^3.0.0",
+    "typescript": "^5.1.6",
+    "vite": "^7.0.0",
+    "vue": "3.5.17"
+  },
+  "peerDependencies": {
+    "tailwindcss": ">=3.0.0",
+    "vite": ">=5.0.0"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.js",
+      "style": "./dist/index.css"
+    },
+    "./package.json": "./package.json"
+  }
+}

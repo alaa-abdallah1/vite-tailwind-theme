@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDir": "./",
+    "baseUrl": "./",
+    "paths": {
+      "@": ["src/"],
+      "@/*": ["src/*"]
+    }
+  },
+  "include": ["./src/**/*", "./src/**/*.vue", "./src/**/*.ts", "**/*.d.ts"],
+  "exclude": ["node_modules", "dist"]
+}

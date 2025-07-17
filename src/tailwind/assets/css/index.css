@@ -1,0 +1,92 @@
+/**
+ * Payiano Tailwind CSS Base Configuration
+ * ---------------------------------------
+ * 
+ * This file contains the core Tailwind CSS configuration and base styles used across
+ * the Payiano ecosystem. It provides consistent styling and compatibility between
+ * Tailwind v3 and v4.
+ * 
+ * When built, this file is available at: dist/index.css
+ * 
+ * USAGE:
+ * You can import this file in any package using:
+ *
+ * @import '@payiano/ha-config/styles';
+ */
+
+@import 'tailwindcss';
+@custom-variant hover (&:hover);
+
+/* TW_THEME_DARK_CLASS */
+
+/* TW_THEME_DARKLESS_CLASS */
+@custom-variant dark (&:where(.dark, .dark *):not(.darkless):not(.darkless *));
+
+@layer base {
+  html {
+    overflow-y: scroll;
+  }
+
+  body {
+    @apply bg-gray-50 dark:bg-gray-100/96;
+  }
+
+  body,
+  /* TW_THEME_DARK_CLASS */
+  body .dark,
+  /* TW_THEME_DARKLESS_CLASS */
+  body .darkless {
+    @apply text-black;
+  }
+
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    @apply border-gray-200 dark:border-gray-200/80;
+  }
+
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    @apply text-gray-400;
+  }
+
+  /* Custom scrollbar styles */
+  ::-webkit-scrollbar {
+    @apply w-1.5 h-1.5;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply rounded-md bg-white dark:bg-gray-800;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-400 dark:bg-gray-500 rounded-md;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-600 dark:bg-gray-400;
+  }
+
+  /* Mobile (hide scrollbar by default and show only while scrolling) */
+  @media only screen and (width <= 1024px) {
+    ::-webkit-scrollbar {
+      @apply w-0 h-0 bg-transparent;
+    }
+
+    ::-webkit-scrollbar-track {
+      @apply bg-white dark:bg-gray-800;
+    }
+  }
+}
+
+@theme {
+  --text-tiny: 0.6rem;
+  --breakpoint-xs: 30rem;
+}
