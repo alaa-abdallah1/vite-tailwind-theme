@@ -1,16 +1,16 @@
-import { Mixed } from '@payiano/ha-types'
-import { getNestedKey, isNumber, isObject, isString } from '@payiano/ha-utils'
+import { get as getNestedKey, isNumber, isObject, isString } from "lodash";
 import {
   TwColors,
   ITwConvertOptions,
   IColorVariantsArgs,
   TwMainColorVariants,
-  IGetTwColorsAndVars
-} from '@/types'
+  IGetTwColorsAndVars,
+  Mixed,
+} from "@/types";
 
-export const TW_MAIN_LIGHT_COLOR = TwMainColorVariants.gray
+export const TW_MAIN_LIGHT_COLOR = TwMainColorVariants.gray;
 
-export const TW_MAIN_DARK_COLOR = TwMainColorVariants.neutral
+export const TW_MAIN_DARK_COLOR = TwMainColorVariants.neutral;
 
 /**
 Generates color variants from a base color.
@@ -29,36 +29,36 @@ const variants = generateColorVariants({ colors: colors, isDark: false, mainColo
 export const generateColorVariants = ({
   colors,
   isDark,
-  mainColor
+  mainColor,
 }: IColorVariantsArgs): TwColors => {
-  const mainColorValue = getNestedKey(colors, mainColor)
-  if (!isObject(mainColorValue)) return {}
+  const mainColorValue = getNestedKey(colors, mainColor) as TwColors;
+  if (!isObject(mainColorValue)) return {};
 
   const value = isDark
     ? {
         ...mainColorValue,
-        '100': mainColorValue?.['50'],
-        '200': mainColorValue?.['100'],
-        '300': mainColorValue?.['200'],
-        '400': mainColorValue?.['300'],
-        '500': mainColorValue?.['400'],
-        '600': mainColorValue?.['500'],
-        '700': mainColorValue?.['600'],
-        '800': mainColorValue?.['700'],
-        '950': mainColorValue?.['700']
+        "100": mainColorValue?.["50"],
+        "200": mainColorValue?.["100"],
+        "300": mainColorValue?.["200"],
+        "400": mainColorValue?.["300"],
+        "500": mainColorValue?.["400"],
+        "600": mainColorValue?.["500"],
+        "700": mainColorValue?.["600"],
+        "800": mainColorValue?.["700"],
+        "950": mainColorValue?.["700"],
       }
-    : mainColorValue
+    : mainColorValue;
 
-  const colorKeys = [...Object.values(TwMainColorVariants), 'mainColor']
+  const colorKeys = [...Object.values(TwMainColorVariants), "mainColor"];
 
   return colorKeys.reduce(
     (result, colorKey) => ({
       ...result,
-      [colorKey]: { ...value, DEFAULT: mainColorValue['600'] }
+      [colorKey]: { ...value, DEFAULT: mainColorValue["600"] },
     }),
     {}
-  ) as TwColors
-}
+  ) as TwColors;
+};
 
 /**
  * Creates a CSS variable reference string with a fallback value
@@ -73,7 +73,7 @@ export const generateColorVariants = ({
  */
 
 export const getTwValue = (key: string, value: string): string =>
-  `var(${key}, ${value})`
+  `var(${key}, ${value})`;
 
 /**
  * Reverses the order of numeric color shades while preserving named color variants
@@ -91,19 +91,22 @@ export const getTwValue = (key: string, value: string): string =>
  * })
  */
 export const reverseColorOrder = (value: TwColors): TwColors => {
-  const entries = Object.entries(value)
+  const entries = Object.entries(value);
 
-  const textEntries = entries.filter(([k]) => !isNumber(k))
-  const numericEntries = entries.filter(([k]) => isNumber(k))
+  const textEntries = entries.filter(([k]) => !isNumber(k));
+  const numericEntries = entries.filter(([k]) => isNumber(k));
 
-  const sorted = numericEntries.sort(([a], [b]) => +a - +b)
-  const reversed = sorted.map(([k], i) => [k, sorted[sorted.length - 1 - i][1]])
+  const sorted = numericEntries.sort(([a], [b]) => +a - +b);
+  const reversed = sorted.map(([k], i) => [
+    k,
+    sorted[sorted.length - 1 - i][1],
+  ]);
 
   return {
     ...Object.fromEntries([...textEntries, ...reversed]),
-    DEFAULT: value['300']
-  }
-}
+    DEFAULT: value["300"],
+  };
+};
 
 /**
  * Recursively processes Tailwind CSS color configurations to generate
@@ -146,57 +149,57 @@ export const getColors = (args: ITwConvertOptions): TwColors => {
     isFlat,
     colors,
     returnVars,
-    parentKey = '',
+    parentKey = "",
     hasKeyVariables,
-    prefix = 'color',
+    prefix = "color",
     hasValueVariables,
-    mainColor = TW_MAIN_LIGHT_COLOR
-  } = args
+    mainColor = TW_MAIN_LIGHT_COLOR,
+  } = args;
 
   const mainColors = generateColorVariants({
     colors,
     isDark,
-    mainColor
-  })
+    mainColor,
+  });
 
   return Object.entries({ ...colors, ...mainColors }).reduce(
     (result: Record<string, Mixed>, [key, value]) => {
       if (isString(value)) {
-        const constantValues = ['inherit', 'current', 'transparent']
+        const constantValues = ["inherit", "current", "transparent"];
 
         if (constantValues.includes(value)) {
-          return { ...result, [key]: value }
+          return { ...result, [key]: value };
         }
 
         const variableName = parentKey
           ? `--${prefix}-${parentKey}-${key}`
-          : `--${prefix}-${key}`
+          : `--${prefix}-${key}`;
 
-        const keyVariableName = hasKeyVariables ? variableName : key
-        const valueVariableName = hasValueVariables ? variableName : key
+        const keyVariableName = hasKeyVariables ? variableName : key;
+        const valueVariableName = hasValueVariables ? variableName : key;
 
         result[keyVariableName] = returnVars
           ? getTwValue(valueVariableName, value)
-          : value
+          : value;
       } else if (isObject(value)) {
-        const processedColors = isDark ? reverseColorOrder(value) : value
+        const processedColors = isDark ? reverseColorOrder(value) : value;
 
         const objValue = getColors({
           ...args,
           parentKey: key,
-          colors: processedColors
-        })
+          colors: processedColors,
+        });
 
         if (isFlat) {
-          return { ...result, ...objValue }
+          return { ...result, ...objValue };
         }
-        result[key] = objValue
+        result[key] = objValue;
       }
-      return result
+      return result;
     },
     {}
-  )
-}
+  );
+};
 
 /**
  * Generates both Tailwind colors and CSS variables in a single operation
@@ -207,35 +210,35 @@ export const getColors = (args: ITwConvertOptions): TwColors => {
 export const getTwColorsAndVars = ({
   isDark,
   colors,
-  mainColor
+  mainColor,
 }: IGetTwColorsAndVars): { variables: TwColors; colors: TwColors } => {
-  const fetchedColors = getColors({ colors, mainColor })
+  const fetchedColors = getColors({ colors, mainColor });
 
   const variablesOptions = {
     colors,
     isDark,
     mainColor,
     isFlat: true,
-    hasKeyVariables: true
-  }
+    hasKeyVariables: true,
+  };
 
   const bgVariablesColors = getColors({
     ...variablesOptions,
-    prefix: 'bg'
-  })
+    prefix: "bg",
+  });
 
   const textVariablesColors = getColors({
     ...variablesOptions,
-    prefix: 'color'
-  })
+    prefix: "color",
+  });
 
   const variables = {
     ...bgVariablesColors,
-    ...textVariablesColors
-  }
+    ...textVariablesColors,
+  };
 
   return {
     variables,
-    colors: fetchedColors
-  }
-}
+    colors: fetchedColors,
+  };
+};

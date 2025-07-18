@@ -37,11 +37,7 @@
   ],
   "author": "Alaa Abdallah",
   "license": "MIT",
-  "dependencies": {
-    "@payiano/ha-utils": "^0.4.0-beta.42"
-  },
   "devDependencies": {
-    "@payiano/ha-types": "^0.4.0-beta.29",
     "@types/estree": "^1.0.5",
     "@types/json-schema": "^7.0.15",
     "@types/lodash": "^4.17.20",

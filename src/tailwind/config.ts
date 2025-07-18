@@ -1,8 +1,7 @@
 import merge from "lodash/merge";
-import { Mixed } from "@payiano/ha-types";
-import { PAYIANO_COLORS } from "./constants";
+import { DEFAULT_COLORS } from "./constants";
 import { getTwDarkVars, getTwLightVars, getTwColors } from "./utils";
-import { ITwExtendedType } from "@/types";
+import { ITwExtendedType, Mixed } from "@/types";
 import { Config } from "tailwindcss";
 
 // Identity colors
@@ -19,8 +18,8 @@ export const getTailwindConfig = (
         extend: {
           // Tailwind color variation generator
           // @see: https://uicolors.app/create
-          colors: PAYIANO_COLORS,
-          backgroundColor: PAYIANO_COLORS,
+          colors: DEFAULT_COLORS,
+          backgroundColor: DEFAULT_COLORS,
         },
       },
     },
@@ -54,13 +53,13 @@ export const getTailwindConfig = (
 
             // TW_THEME_DARKLESS_CLASS
             ":root, :host, .darkless": getTwLightVars({
-              colors: { ...PAYIANO_COLORS, ...extend?.colors },
+              colors: { ...DEFAULT_COLORS, ...extend?.colors },
               extendedVars: extended?.lightVars,
               mainColor: extended?.lightMainColor,
             }),
             // TW_THEME_DARK_CLASS
             ".dark": getTwDarkVars({
-              colors: { ...PAYIANO_COLORS, ...extend?.colors },
+              colors: { ...DEFAULT_COLORS, ...extend?.colors },
               extendedVars: extended?.darkVars,
               mainColor: extended?.darkMainColor,
             }),

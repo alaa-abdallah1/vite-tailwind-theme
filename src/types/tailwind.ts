@@ -1,48 +1,48 @@
-import { Mixed } from '@payiano/ha-types'
+export type Mixed = any;
 
-export type TwColors = Record<string | number, Mixed>
+export type TwColors = Record<string | number, Mixed>;
 
 export enum TwMainColorVariants {
-  gray = 'gray',
-  zinc = 'zinc',
-  stone = 'stone',
-  slate = 'slate',
-  neutral = 'neutral'
+  gray = "gray",
+  zinc = "zinc",
+  stone = "stone",
+  slate = "slate",
+  neutral = "neutral",
 }
 
 export interface ITwConvertOptions {
-  colors: TwColors
-  prefix?: string
-  isDark?: boolean
-  isFlat?: boolean
-  parentKey?: string
-  returnVars?: boolean
-  hasKeyVariables?: boolean
-  hasValueVariables?: boolean
-  mainColor?: TwMainColorVariants
+  colors: TwColors;
+  prefix?: string;
+  isDark?: boolean;
+  isFlat?: boolean;
+  parentKey?: string;
+  returnVars?: boolean;
+  hasKeyVariables?: boolean;
+  hasValueVariables?: boolean;
+  mainColor?: TwMainColorVariants;
 }
 
 export interface IColorVariantsArgs {
-  colors: TwColors
-  isDark?: boolean
-  mainColor: TwMainColorVariants
+  colors: TwColors;
+  isDark?: boolean;
+  mainColor: TwMainColorVariants;
 }
 
 export interface IGetTwColorsAndVars {
-  colors: TwColors
-  isDark?: boolean
-  mainColor: TwMainColorVariants
+  colors: TwColors;
+  isDark?: boolean;
+  mainColor: TwMainColorVariants;
 }
 
 export interface IGetTwColorsArgs {
-  colors: TwColors
-  prefix?: string
+  colors: TwColors;
+  prefix?: string;
 }
 
 export interface IGetTwModeVarsArgs {
-  colors: TwColors
-  extendedVars?: TwColors
-  mainColor?: TwMainColorVariants
+  colors: TwColors;
+  extendedVars?: TwColors;
+  mainColor?: TwMainColorVariants;
 }
 
 /**
@@ -68,8 +68,8 @@ export interface IGetTwModeVarsArgs {
  *                      or CSS variable references.
  */
 export interface ITwExtendedType {
-  lightVars?: TwColors
-  darkVars?: TwColors
-  lightMainColor?: TwMainColorVariants
-  darkMainColor?: TwMainColorVariants
+  lightVars?: TwColors;
+  darkVars?: TwColors;
+  lightMainColor?: TwMainColorVariants;
+  darkMainColor?: TwMainColorVariants;
 }
