@@ -22,8 +22,8 @@
     "build": "tsc",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "prepublishOnly": "yarn run build",
-    "release": "yarn run build && yarn publish"
+    "prepublishOnly": "pnpm run build",
+    "release": "pnpm run build && pnpm publish"
   },
   "keywords": [
     "vite",
@@ -45,8 +45,7 @@
     "lodash": "^4.17.21",
     "tailwindcss": "^3.0.0",
     "typescript": "^5.1.6",
-    "vite": "^7.0.0",
-    "vue": "3.5.17"
+    "vite": "^7.0.0"
   },
   "peerDependencies": {
     "tailwindcss": ">=3.0.0",
@@ -61,8 +60,7 @@
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
-      "require": "./dist/index.js",
-      "style": "./dist/index.css"
+      "require": "./dist/index.js"
     },
     "./package.json": "./package.json"
   }
