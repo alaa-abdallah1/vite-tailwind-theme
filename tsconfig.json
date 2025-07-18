@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "rootDir": "./",
+    "rootDir": "./src",
     "baseUrl": "./",
     "paths": {
       "@": ["src/"],
@@ -10,7 +10,7 @@
     "module": "ESNext",
     "moduleResolution": "bundler",
     "declaration": true,
-    "outDir": "./dist",
+    "outDir": "dist",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
