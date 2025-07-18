@@ -1,5 +1,5 @@
 import merge from "lodash/merge";
-import { ITwExtendedType, Mixed } from "@/types";
+import { ITwExtendedType, Mixed } from "./types";
 import { Config } from "tailwindcss";
 import { DEFAULT_COLORS } from "./constants";
 import { getTwColors, getTwDarkVars, getTwLightVars } from "./utils";

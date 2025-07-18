@@ -6,7 +6,7 @@ import {
   TwMainColorVariants,
   IGetTwColorsAndVars,
   Mixed,
-} from "@/types";
+} from "../types";
 
 export const TW_MAIN_LIGHT_COLOR = TwMainColorVariants.gray;
 
