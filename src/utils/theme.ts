@@ -2,9 +2,9 @@ import {
   getColors,
   TW_MAIN_DARK_COLOR,
   TW_MAIN_LIGHT_COLOR,
-  getTwColorsAndVars
-} from './generators'
-import { TwColors, IGetTwColorsArgs, IGetTwModeVarsArgs } from '@/types'
+  getTwColorsAndVars,
+} from "./generators";
+import { TwColors, IGetTwColorsArgs, IGetTwModeVarsArgs } from "@/types";
 
 /**
  * Generates Tailwind-compatible color definitions with a custom prefix
@@ -17,8 +17,8 @@ export const getTwColors = ({ colors, prefix }: IGetTwColorsArgs): TwColors =>
     colors,
     prefix,
     returnVars: true,
-    hasValueVariables: true
-  })
+    hasValueVariables: true,
+  });
 
 /**
  * Generates CSS variables for light mode theme
@@ -30,21 +30,21 @@ export const getTwColors = ({ colors, prefix }: IGetTwColorsArgs): TwColors =>
 export const getTwLightVars = ({
   colors,
   extendedVars,
-  mainColor
+  mainColor,
 }: IGetTwModeVarsArgs): TwColors => {
   const { variables } = getTwColorsAndVars({
     colors,
-    mainColor: mainColor || TW_MAIN_LIGHT_COLOR
-  })
+    mainColor: mainColor || TW_MAIN_LIGHT_COLOR,
+  });
 
   return {
     ...variables,
 
     // use vars here
 
-    ...extendedVars
-  }
-}
+    ...extendedVars,
+  };
+};
 
 /**
  * Generates CSS variables for dark mode theme with specific color overrides
@@ -55,36 +55,36 @@ export const getTwLightVars = ({
 export const getTwDarkVars = ({
   colors: colorsArg,
   extendedVars,
-  mainColor
+  mainColor,
 }: IGetTwModeVarsArgs): TwColors => {
   const { variables, colors } = getTwColorsAndVars({
     isDark: true,
     colors: colorsArg,
-    mainColor: mainColor || TW_MAIN_DARK_COLOR
-  })
+    mainColor: mainColor || TW_MAIN_DARK_COLOR,
+  });
 
   return {
     ...variables,
 
-    '--bg-black': colors.white,
-    '--bg-white': colors.mainColor['800'],
+    "--bg-black": colors.white,
+    "--bg-white": colors.mainColor["800"],
 
-    '--bg-error-DEFAULT': colors.secondary['700'],
-    '--bg-tertiary-DEFAULT': colors.tertiary['800'],
+    "--bg-error-DEFAULT": colors.secondary["700"],
+    "--bg-tertiary-DEFAULT": colors.tertiary["800"],
 
-    '--bg-secondary-50': colors.secondary['800'],
-    '--bg-secondary-DEFAULT': colors.secondary['700'],
+    "--bg-secondary-50": colors.secondary["800"],
+    "--bg-secondary-DEFAULT": colors.secondary["700"],
 
-    '--bg-warning-200': colors.warning['900'],
+    "--bg-warning-200": colors.warning["900"],
 
     // Text colors
-    '--color-white': colors.black,
-    '--color-black': colors.white,
+    "--color-white": colors.black,
+    "--color-black": colors.white,
 
-    '--color-error-DEFAULT': colors.error['500'],
-    '--color-primary-DEFAULT': colors.primary['50'],
-    '--color-secondary-DEFAULT': colors.secondary['400'],
+    "--color-error-DEFAULT": colors.error["500"],
+    "--color-primary-DEFAULT": colors.primary["50"],
+    "--color-secondary-DEFAULT": colors.secondary["400"],
 
-    ...extendedVars
-  }
-}
+    ...extendedVars,
+  };
+};

@@ -1,8 +1,8 @@
 import merge from "lodash/merge";
-import { DEFAULT_COLORS } from "./constants";
-import { getTwDarkVars, getTwLightVars, getTwColors } from "./utils";
 import { ITwExtendedType, Mixed } from "@/types";
 import { Config } from "tailwindcss";
+import { DEFAULT_COLORS } from "./constants";
+import { getTwColors, getTwDarkVars, getTwLightVars } from "./utils";
 
 // Identity colors
 // Primary: #000066, Secondary: #1d6dee, Tertiary: #25ea8d
