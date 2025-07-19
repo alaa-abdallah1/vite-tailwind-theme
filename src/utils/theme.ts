@@ -69,21 +69,9 @@ export const getTwDarkVars = ({
     "--bg-black": colors.white,
     "--bg-white": colors.mainColor["800"],
 
-    "--bg-error-DEFAULT": colors.secondary["700"],
-    "--bg-tertiary-DEFAULT": colors.tertiary["800"],
-
-    "--bg-secondary-50": colors.secondary["800"],
-    "--bg-secondary-DEFAULT": colors.secondary["700"],
-
-    "--bg-warning-200": colors.warning["900"],
-
     // Text colors
     "--color-white": colors.black,
     "--color-black": colors.white,
-
-    "--color-error-DEFAULT": colors.error["500"],
-    "--color-primary-DEFAULT": colors.primary["50"],
-    "--color-secondary-DEFAULT": colors.secondary["400"],
 
     ...extendedVars,
   };
