@@ -1,6 +1,4 @@
-import { omit as excludeKeys } from "lodash";
-
-const colors = {
+export const DEFAULT_COLORS = {
   inherit: "inherit",
   current: "currentColor",
   transparent: "transparent",
@@ -213,67 +211,5 @@ const colors = {
     "800": "#9f1239",
     "900": "#881337",
     "950": "#4c0519",
-  },
-};
-
-export const DEFAULT_COLORS = {
-  ...excludeKeys(colors, ["red", "orange", "sky", "green"]),
-  primary: {
-    DEFAULT: "#000066",
-    50: "#f1f4ff",
-    100: "#e5e8ff",
-    200: "#ced5ff",
-    300: "#a7b1ff",
-    400: "#767fff",
-    500: "#3f42ff",
-    600: "#2118ff",
-    700: "#1007fa",
-    800: "#0d05d2",
-    900: "#0c06ac",
-    950: "#000066",
-  },
-  secondary: {
-    DEFAULT: "#1d6dee",
-    50: "#eff7ff",
-    100: "#daedff",
-    200: "#bee0ff",
-    300: "#91cdff",
-    400: "#5db0fd",
-    500: "#388ef9",
-    600: "#1d6dee",
-    700: "#1a59db",
-    800: "#1c49b1",
-    900: "#1c418c",
-    950: "#162855",
-  },
-  tertiary: {
-    DEFAULT: "#25ea8d",
-    50: "#effef6",
-    100: "#d9ffec",
-    200: "#b5fdda",
-    300: "#7cf9bd",
-    400: "#25ea8d",
-    500: "#12d57a",
-    600: "#08b162",
-    700: "#0b8a4f",
-    800: "#0e6d41",
-    900: "#0e5938",
-    950: "#01321d",
-  },
-  error: {
-    DEFAULT: colors.red["600"],
-    ...colors.red,
-  },
-  success: {
-    DEFAULT: colors.green["600"],
-    ...colors.green,
-  },
-  warning: {
-    DEFAULT: colors.orange["600"],
-    ...colors.orange,
-  },
-  info: {
-    DEFAULT: colors.sky["600"],
-    ...colors.sky,
   },
 };

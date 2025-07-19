@@ -4,7 +4,7 @@ import {
   TW_MAIN_LIGHT_COLOR,
   getTwColorsAndVars,
 } from "./generators";
-import { TwColors, IGetTwColorsArgs, IGetTwModeVarsArgs } from "../types";
+import type { TwColors, IGetTwColorsArgs, IGetTwModeVarsArgs } from "../types";
 
 /**
  * Generates Tailwind-compatible color definitions with a custom prefix

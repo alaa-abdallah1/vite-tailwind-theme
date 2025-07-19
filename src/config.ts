@@ -1,8 +1,8 @@
 import merge from "lodash/merge";
-import { ITwExtendedType, Mixed } from "./types";
-import { Config } from "tailwindcss";
-import { DEFAULT_COLORS } from "./constants";
-import { getTwColors, getTwDarkVars, getTwLightVars } from "./utils";
+import type { Config } from "tailwindcss";
+import { DEFAULT_COLORS } from "./constants/colors";
+import type { ITwExtendedType, Mixed } from "./types";
+import { getTwColors, getTwDarkVars, getTwLightVars } from "./utils/theme";
 
 // Identity colors
 // Primary: #000066, Secondary: #1d6dee, Tertiary: #25ea8d
@@ -11,7 +11,7 @@ export const getTailwindConfig = (
   config?: Partial<Config>,
   extended?: ITwExtendedType
 ): Mixed => {
-  const baseConfig = merge<Config, Partial<Config> | undefined | null>(
+  const baseConfig = merge(
     {
       content: ["./src/**/*.{js,ts,vue}"],
       theme: {
@@ -26,8 +26,8 @@ export const getTailwindConfig = (
     config
   );
 
-  const { theme = {} } = baseConfig;
-  const { extend = {} } = theme;
+  const theme = baseConfig.theme;
+  const extend = theme?.extend;
 
   const _config: Config = {
     ...baseConfig,

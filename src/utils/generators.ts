@@ -1,12 +1,12 @@
-import { get as getNestedKey, isNumber, isObject, isString } from "lodash";
-import {
-  TwColors,
-  ITwConvertOptions,
+import type {
   IColorVariantsArgs,
-  TwMainColorVariants,
   IGetTwColorsAndVars,
+  ITwConvertOptions,
   Mixed,
+  TwColors,
 } from "../types";
+import { TwMainColorVariants } from "../types";
+import { getNestedKey, isNumber, isObject, isString } from "./general";
 
 export const TW_MAIN_LIGHT_COLOR = TwMainColorVariants.gray;
 
@@ -186,7 +186,7 @@ export const getColors = (args: ITwConvertOptions): TwColors => {
 
         const objValue = getColors({
           ...args,
-          parentKey: key,
+          parentKey: parentKey ? `${parentKey}-${key}` : key,
           colors: processedColors,
         });
 
