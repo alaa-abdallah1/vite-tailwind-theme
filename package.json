@@ -1,6 +1,6 @@
 {
   "name": "vite-tailwind-theme",
-  "version": "1.0.18",
+  "version": "1.0.19",
   "description": "A Vite plugin for generating Tailwind CSS themes",
   "repository": {
     "type": "git",
