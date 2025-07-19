@@ -54,7 +54,7 @@ export const generateColorVariants = ({
   return colorKeys.reduce(
     (result, colorKey) => ({
       ...result,
-      [colorKey]: { ...value, DEFAULT: mainColorValue["600"] },
+      [colorKey]: value,
     }),
     {}
   ) as TwColors;
@@ -104,7 +104,7 @@ export const reverseColorOrder = (value: TwColors): TwColors => {
 
   return {
     ...Object.fromEntries([...textEntries, ...reversed]),
-    DEFAULT: value["300"],
+    DEFAULT: value?.DEFAULT || value?.["300"],
   };
 };
 
