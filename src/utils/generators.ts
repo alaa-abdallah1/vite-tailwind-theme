@@ -37,6 +37,7 @@ export const generateColorVariants = ({
   const value = isDark
     ? {
         ...mainColorValue,
+        "50": mainColorValue?.["200"],
         "100": mainColorValue?.["50"],
         "200": mainColorValue?.["100"],
         "300": mainColorValue?.["200"],
