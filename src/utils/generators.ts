@@ -37,7 +37,6 @@ export const generateColorVariants = ({
   const value = isDark
     ? {
         ...mainColorValue,
-        "50": mainColorValue?.["200"],
         "100": mainColorValue?.["50"],
         "200": mainColorValue?.["100"],
         "300": mainColorValue?.["200"],
@@ -166,12 +165,6 @@ export const getColors = (args: ITwConvertOptions): TwColors => {
   return Object.entries({ ...colors, ...mainColors }).reduce(
     (result: Record<string, Mixed>, [key, value]) => {
       if (isString(value)) {
-        const constantValues = ["inherit", "current", "transparent"];
-
-        if (constantValues.includes(value)) {
-          return { ...result, [key]: value };
-        }
-
         const variableName = parentKey
           ? `--${prefix}-${parentKey}-${key}`
           : `--${prefix}-${key}`;
